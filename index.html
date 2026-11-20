@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joyeux anniversaire Hélène</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Caveat:wght@500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: tendre, joyeux, intime, une lettre d'amour qu'on feuillette
+   IDEA: un album photo relié qu'on ouvre, avec polaroïds, lettre et gâteau
+   PICTURE: son portrait dans une arche, entouré de lumière rose et d'étoiles
+   COLOUR and TYPE: framboise profond, rose poudré, or ; DM Serif Display, Caveat, Outfit
+   LAYOUT: écran d'ouverture, portrait, chapitres photo, raisons, distance, lettre, gâteau */
+:root{color-scheme:light dark;
+--bg:light-dark(#fdeef0,#24070f);--bg2:light-dark(#f8dbe0,#33101b);
+--ink:light-dark(#3a0d1f,#fbe7ec);--soft:light-dark(#7a3a52,#e3b5c4);
+--rose:#e0237a;--or:#d9a441;--wine:#3a0d1f;--card:light-dark(#fff,#3d1422)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Outfit,system-ui,sans-serif;overflow-x:clip}
+body.locked{overflow:hidden;height:100vh}
+h1,h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(32px,5vw,52px)}
+.hand{font-family:Caveat,cursive}
+.band{padding:clamp(48px,7vw,110px) max(5vw,16px)}
+.wrap{max-width:1180px;margin:0 auto}
+.lead{max-width:60ch;color:var(--soft);margin:14px 0 0}
+
+/* Ouverture */
+#gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;text-align:center;
+background:radial-gradient(circle at 50% 40%,#5a1530,#1a040b 75%);color:#fbe7ec;transition:opacity 1s,visibility 1s;padding:20px}
+#gate.gone{opacity:0;visibility:hidden}
+.env{width:min(300px,78vw);aspect-ratio:3/2;position:relative;margin:26px auto;cursor:pointer;border:0;background:none;padding:0}
+.env .body{position:absolute;inset:0;background:linear-gradient(160deg,#f6c9d5,#e98fab);border-radius:8px;box-shadow:0 20px 50px #0008}
+.env .flap{position:absolute;inset:0 0 35% 0;background:linear-gradient(#f9d8e1,#eda3b8);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s;border-radius:8px 8px 0 0}
+.env .seal{position:absolute;left:50%;top:52%;translate:-50% -50%;width:58px;height:58px;border-radius:50%;background:var(--rose);display:grid;place-items:center;box-shadow:0 4px 12px #0006;animation:beat 1.4s infinite}
+.env.open .flap{transform:rotateX(180deg)}
+@keyframes beat{50%{scale:1.12}}
+#gate p{margin:0;opacity:.85}
+#gate .hand{font-size:clamp(34px,7vw,52px);color:#ffd9e4}
+
+/* Hero */
+.hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,70px);
+background:radial-gradient(circle at 75% 45%,light-dark(#f7c3d2,#5a1530),transparent 60%),var(--bg);position:relative;overflow:hidden}
+.hero h1{font-size:clamp(46px,8vw,96px)}
+.hero h1 em{color:var(--rose);font-style:italic}
+.fullname{font-size:clamp(15px,1.8vw,19px);letter-spacing:.02em;color:var(--soft);margin:18px 0 0}
+.hero .hand{font-size:clamp(28px,4vw,40px);color:var(--rose);margin:8px 0 0}
+.arch{position:relative;justify-self:center;width:min(420px,80vw)}
+.arch img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:999px 999px 24px 24px;border:6px solid var(--card);box-shadow:0 30px 70px #3a0d1f55}
+.arch::before{content:"";position:absolute;inset:-18px;border:2px solid var(--or);border-radius:999px 999px 34px 34px;opacity:.7}
+.star{position:absolute;color:var(--or);animation:tw 3s infinite ease-in-out}
+@keyframes tw{50%{opacity:.2;scale:.7}}
+.scrollhint{position:absolute;bottom:22px;left:50%;translate:-50%;font-size:14px;color:var(--soft);animation:bob 2s infinite}
+@keyframes bob{50%{translate:-50% 8px}}
+
+/* Chapitres photo */
+.chap{background:var(--bg2)}
+.chap:nth-of-type(even){background:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:clamp(18px,3vw,34px);margin-top:40px}
+.pol{background:var(--card);padding:12px 12px 6px;border-radius:4px;box-shadow:0 14px 34px #3a0d1f2e;rotate:var(--r,0deg);transition:rotate .4s,scale .4s;cursor:zoom-in;border:0;text-align:center;color:var(--ink);font:inherit}
+.pol:hover,.pol:focus-visible{rotate:0deg;scale:1.04;outline:none}
+.pol:focus-visible{box-shadow:0 0 0 3px var(--rose)}
+.pol img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border-radius:2px}
+.pol span{display:block;font-family:Caveat,cursive;font-size:23px;padding:6px 0 2px}
+.reveal{opacity:0;translate:0 30px;transition:opacity .9s,translate .9s}
+.reveal.in{opacity:1;translate:0 0}
+
+/* Raisons */
+.reasons{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:18px;margin-top:40px}
+.rs{perspective:900px;height:170px;border:0;background:none;padding:0;cursor:pointer;font:inherit}
+.rs .in2{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.rs.flip .in2{transform:rotateY(180deg)}
+.rs .f,.rs .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;padding:20px;text-align:center}
+.rs .f{background:var(--rose);color:#fff;font-family:"DM Serif Display",serif;font-size:44px}
+.rs .f small{display:block;font:14px Outfit,sans-serif;opacity:.85}
+.rs .b{background:var(--card);color:var(--ink);transform:rotateY(180deg);font-size:17px;box-shadow:0 10px 30px #3a0d1f22;border:2px solid var(--or)}
+
+/* Distance */
+.dist{background:var(--wine);color:#fbe7ec;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,70px);align-items:center}
+.dist .lead{color:#e3b5c4}
+.phone{justify-self:center;width:min(300px,72vw);border-radius:34px;border:10px solid #120308;overflow:hidden;box-shadow:0 30px 60px #0008;rotate:-3deg}
+.phone img{width:100%;display:block}
+.line{display:flex;align-items:center;gap:12px;margin-top:30px;font-family:Caveat,cursive;font-size:26px}
+.line i{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--or) 0 10px,transparent 10px 18px);animation:dash 1s linear infinite;background-size:18px 2px}
+@keyframes dash{to{background-position:18px 0}}
+
+/* Lettre */
+.letter{max-width:720px;margin:40px auto 0;background:light-dark(#fffaf6,#2c0b15);padding:clamp(26px,5vw,56px);border-radius:6px;box-shadow:0 24px 60px #3a0d1f30;position:relative;
+background-image:repeating-linear-gradient(transparent 0 37px,light-dark(#f1d3db,#4a1a29) 37px 38px)}
+.letter p{font-family:Caveat,cursive;font-size:clamp(23px,3vw,28px);line-height:38px;margin:0 0 38px}
+.letter .sig{text-align:right;color:var(--rose);font-size:34px}
+
+/* Gâteau */
+.cake{text-align:center;background:radial-gradient(circle at 50% 70%,light-dark(#f7c3d2,#4a1226),var(--bg) 70%)}
+.cakebox{position:relative;width:min(320px,86vw);margin:40px auto 0}
+.cakebox svg{width:100%;height:auto;display:block}
+.candles{position:absolute;left:0;right:0;top:0;display:flex;justify-content:center;gap:clamp(18px,6vw,34px)}
+.cd{width:44px;height:110px;border:0;background:none;padding:0;cursor:pointer;position:relative}
+.cd::after{content:"";position:absolute;bottom:0;left:50%;translate:-50%;width:12px;height:66px;border-radius:3px;background:repeating-linear-gradient(135deg,#fff 0 8px,var(--rose) 8px 16px)}
+.cd .fl{position:absolute;left:50%;top:6px;translate:-50%;width:18px;height:30px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#fff6c8,#ffb52e 55%,#ff6a00);box-shadow:0 0 22px 8px #ffb52e88;animation:fl .25s infinite alternate;transition:opacity .4s}
+.cd.out .fl{opacity:0}
+@keyframes fl{to{scale:1 1.12;rotate:4deg}}
+.cake .hint{color:var(--soft);margin-top:18px}
+#wish{display:none;margin-top:26px}
+#wish.show{display:block;animation:pop .8s}
+@keyframes pop{from{scale:.6;opacity:0}}
+#wish h2{color:var(--rose)}
+footer{text-align:center;padding:30px 16px 50px;color:var(--soft);font-size:14px;background:var(--bg)}
+
+/* Lightbox */
+#lb{position:fixed;inset:0;background:#120308ee;z-index:40;display:none;place-items:center;padding:20px}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:78vh;border-radius:6px;box-shadow:0 20px 60px #000}
+#lb p{color:#fbe7ec;font-family:Caveat,cursive;font-size:28px;text-align:center;margin:12px 0 0}
+#lb button{position:absolute;background:#ffffff22;color:#fff;border:0;width:48px;height:48px;border-radius:50%;font-size:24px;cursor:pointer}
+#lb .x{top:16px;right:16px}#lb .pv{left:12px;top:50%}#lb .nx{right:12px;top:50%}
+canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:60;width:100%;height:100%}
+#mus{position:fixed;right:16px;bottom:16px;z-index:30;width:52px;height:52px;border-radius:50%;border:0;background:var(--rose);color:#fff;font-size:22px;cursor:pointer;box-shadow:0 8px 20px #3a0d1f55}
+@media(max-width:760px){.hero,.dist{grid-template-columns:minmax(0,1fr)}.hero{text-align:center;padding-top:70px}.arch{order:-1}.dist{text-align:center}.line{justify-content:center}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;translate:0 0}}
+</style>
+</head>
+<body class="locked">
+
+<div id="gate">
+  <div>
+    <p>Une petite surprise t'attend</p>
+    <div class="hand">Pour Hélène</div>
+    <button class="env" id="env" aria-label="Ouvrir la lettre">
+      <div class="body"></div><div class="flap"></div>
+      <div class="seal"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6C19 16.5 12 21 12 21z"/></svg></div>
+    </button>
+    <p>Touche l'enveloppe pour l'ouvrir</p>
+  </div>
+</div>
+
+<header class="hero band">
+  <div>
+    <h1>Joyeux<br>anniversaire,<br><em>ma jeune fille sérère</em></h1>
+    <p class="fullname">Marie Louise Hélène Gnilane FAYE</p>
+    <p class="hand">Aujourd'hui, le monde fête la plus belle.</p>
+  </div>
+  <div class="arch">
+    <img src="img/hero.jpg" alt="Hélène en veste verte, souriante">
+    <span class="star" style="top:-10px;left:-30px;font-size:30px">✦</span>
+    <span class="star" style="top:30%;right:-34px;font-size:22px;animation-delay:1s">✦</span>
+    <span class="star" style="bottom:12%;left:-26px;font-size:18px;animation-delay:2s">✦</span>
+  </div>
+  <div class="scrollhint">Descends doucement ↓</div>
+</header>
+
+<main id="chapters"></main>
+
+<section class="band" style="background:var(--bg2)">
+  <div class="wrap">
+    <h2>Quelques raisons parmi mille</h2>
+    <p class="lead">Retourne chaque carte. Il y en a autant que j'ai pu en écrire avant de manquer de place.</p>
+    <div class="reasons" id="reasons"></div>
+  </div>
+</section>
+
+<section class="dist band">
+  <div>
+    <h2>Loin des yeux,<br>jamais loin du cœur</h2>
+    <p class="lead">Cette année encore, des kilomètres nous séparent le jour de ta fête. Mais chaque appel vidéo, chaque message du matin et chaque fou rire à travers un écran me rappellent que la distance ne gagne jamais contre nous.</p>
+    <div class="line"><span>moi</span><i></i><span>♥</span><i></i><span>toi</span></div>
+  </div>
+  <div class="phone"><img src="img/appel.jpg" alt="Hélène qui rit pendant un appel vidéo"></div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 style="text-align:center">Ma lettre pour toi</h2>
+    <div class="letter">
+      <p>Ma Hélène, ma jeune fille sérère,</p>
+      <p>Un an de plus, et je suis toujours aussi fier de toi. Fier de la femme que tu es, forte à la salle, sérieuse en classe, élégante devant l'objectif et tellement drôle quand on s'appelle tard le soir.</p>
+      <p>Je ne suis pas à côté de toi aujourd'hui, alors j'ai construit ce petit coin du web rien que pour toi. Chaque photo ici, c'est un moment où je t'ai trouvée belle. Autant dire toutes.</p>
+      <p>Je te souhaite une année pleine de réussite, de santé et de rires. Et je te promets qu'on fêtera le prochain ensemble, main dans la main.</p>
+      <p class="sig">Ton Robert</p>
+    </div>
+  </div>
+</section>
+
+<section class="cake band">
+  <h2>Fais un vœu</h2>
+  <p class="lead" style="margin-inline:auto">Ferme les yeux, pense très fort à ton vœu, puis souffle les bougies en les touchant.</p>
+  <div class="cakebox">
+    <div class="candles" id="candles"></div>
+    <svg viewBox="0 0 320 230" aria-hidden="true">
+      <ellipse cx="160" cy="214" rx="150" ry="14" fill="#3a0d1f" opacity=".18"/>
+      <rect x="30" y="140" width="260" height="70" rx="12" fill="#e0237a"/>
+      <rect x="30" y="140" width="260" height="18" rx="9" fill="#f7a6c4"/>
+      <rect x="55" y="98" width="210" height="50" rx="10" fill="#f6c9d5"/>
+      <path d="M55 106q17 16 35 0t35 0 35 0 35 0 35 0 35 0" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <g fill="#d9a441"><circle cx="70" cy="180" r="5"/><circle cx="120" cy="190" r="5"/><circle cx="170" cy="178" r="5"/><circle cx="220" cy="190" r="5"/><circle cx="265" cy="178" r="5"/></g>
+    </svg>
+  </div>
+  <p class="hint" id="hint">5 bougies allumées</p>
+  <div id="wish"><h2>Ton vœu est parti !</h2><p class="hand" style="font-size:32px;margin:8px 0 0">Joyeux anniversaire, Marie Louise Hélène. Je t'aime.</p></div>
+</section>
+
+<footer>Fait avec amour par Robert, pour Hélène · 2026</footer>
+
+<div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Fermer">✕</button><button class="pv" aria-label="Précédente">‹</button><div style="text-align:center"><img alt=""><p></p></div><button class="nx" aria-label="Suivante">›</button></div>
+<canvas id="cf"></canvas>
+
+<script>
+{
+const chapters=[
+ {t:"Ma reine, en portrait",d:"Il y a des visages qu'on n'oublie pas. Le tien, je le connais par cœur.",p:[["blazer","La classe naturelle"],["rose","Tout en rose"],["bleu","Elle danse"],["nb","Ce regard…"],["vert","Mon sourire préféré"],["clin","Un clin d'œil rien que pour moi"]]},
+ {t:"Toi, au quotidien",d:"Celle que j'aime le plus, c'est la vraie toi, sans pose, dans la vie de tous les jours.",p:[["casquette","Peace & love"],["pagne","Le bleu te va si bien"],["miroir","Prête à conquérir la journée"],["fenetre","Timide, mais pas trop"],["profil","Perdue dans ses pensées"],["gym","Ma championne"],["ombre","Mystérieuse"]]},
+ {t:"La brillante étudiante",d:"Sérieuse, travailleuse, toujours prête. Je t'admire.",p:[["classe","Concentrée"],["expose","Madame la présentatrice"]]},
+ {t:"Nous deux",d:"Mes photos préférées, ce sont celles où on est ensemble.",p:[["selfie","Toi et moi"],["mains1","Ta main dans la mienne"],["mains2","Nos bracelets"]]}
+];
+const all=[];
+document.getElementById('chapters').innerHTML=chapters.map(c=>`<section class="chap band"><div class="wrap"><h2 class="reveal">${c.t}</h2><p class="lead reveal">${c.d}</p><div class="grid">${c.p.map(([f,cap])=>{const i=all.push([f,cap])-1;const r=(Math.random()*6-3).toFixed(1);return `<button class="pol reveal" style="--r:${r}deg" data-i="${i}"><img loading="lazy" src="img/${f}.jpg" alt="${cap}"><span>${cap}</span></button>`}).join('')}</div></div></section>`).join('');
+
+const reasons=["Ton sourire, qui illumine même un appel vidéo à 19h30.","Ta force. Tu ne lâches jamais rien, à la salle comme ailleurs.","Ton intelligence, et ta façon d'expliquer les choses.","Ton style. Tu peux tout porter, et tout te va.","Ta douceur quand je suis fatigué.","Tes fous rires qui me font rire même quand je ne sais pas pourquoi.","Ta patience avec la distance.","Simplement toi, telle que tu es."];
+document.getElementById('reasons').innerHTML=reasons.map((r,i)=>`<button class="rs reveal"><div class="in2"><div class="f"><div>${i+1}<small>touche-moi</small></div></div><div class="b">${r}</div></div></button>`).join('');
+document.querySelectorAll('.rs').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('flip')));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Lightbox
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img'),lbp=lb.querySelector('p');let cur=0;
+const show=i=>{cur=(i+all.length)%all.length;lbi.src='img/'+all[cur][0]+'.jpg';lbi.alt=all[cur][1];lbp.textContent=all[cur][1];lb.classList.add('on')};
+document.querySelectorAll('.pol').forEach(b=>b.addEventListener('click',()=>show(+b.dataset.i)));
+lb.querySelector('.x').onclick=()=>lb.classList.remove('on');
+lb.querySelector('.pv').onclick=e=>{e.stopPropagation();show(cur-1)};
+lb.querySelector('.nx').onclick=e=>{e.stopPropagation();show(cur+1)};
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('on')});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
+
+// Confettis
+const cv=document.getElementById('cf'),cx=cv.getContext('2d');let parts=[],running=false;
+const size=()=>{cv.width=innerWidth;cv.height=innerHeight};size();addEventListener('resize',size);
+const cols=['#e0237a','#d9a441','#f7a6c4','#ffffff','#ff6fa8'];
+function burst(n){for(let k=0;k<n;k++)parts.push({x:Math.random()*cv.width,y:-20-Math.random()*cv.height*.5,vx:Math.random()*2-1,vy:2+Math.random()*3,s:5+Math.random()*7,a:Math.random()*6,va:Math.random()*.2-.1,c:cols[k%cols.length],h:Math.random()<.3});if(!running){running=true;loop()}}
+function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);for(const p of parts){p.x+=p.vx+Math.sin(p.y/40);p.y+=p.vy;p.a+=p.va;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;if(p.h){cx.font=p.s*2.4+'px serif';cx.fillText('♥',0,0)}else cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore()}if(parts.length)requestAnimationFrame(loop);else{running=false;cx.clearRect(0,0,cv.width,cv.height)}}
+
+// Musique douce générée (joyeux anniversaire)
+let ac=null,playing=false,timer=null;
+const notes=[[392,.75],[392,.25],[440,1],[392,1],[523,1],[494,2],[392,.75],[392,.25],[440,1],[392,1],[587,1],[523,2],[392,.75],[392,.25],[784,1],[659,1],[523,1],[494,1],[440,2],[698,.75],[698,.25],[659,1],[523,1],[587,1],[523,3]];
+function tune(){if(!playing)return;let t=ac.currentTime+.05;const b=.42;for(const [f,d] of notes){const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.12,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+d*b*.95);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+d*b);t+=d*b}timer=setTimeout(tune,(t-ac.currentTime+1.5)*1000)}
+const mus=document.createElement('button');mus.id='mus';mus.setAttribute('aria-label','Musique');mus.textContent='♪';document.body.append(mus);
+function toggleMusic(on){try{if(!ac)ac=new (window.AudioContext||window.webkitAudioContext)();playing=on??!playing;mus.textContent=playing?'❚❚':'♪';clearTimeout(timer);if(playing){ac.resume();tune()}}catch(e){mus.remove()}}
+mus.onclick=()=>toggleMusic();
+
+// Ouverture
+const env=document.getElementById('env');
+env.addEventListener('click',()=>{env.classList.add('open');toggleMusic(true);setTimeout(()=>{document.getElementById('gate').classList.add('gone');document.body.classList.remove('locked');burst(160)},800)});
+
+// Bougies
+const cw=document.getElementById('candles');cw.innerHTML=Array.from({length:5},()=>'<button class="cd" aria-label="Souffler la bougie"><span class="fl"></span></button>').join('');
+const hint=document.getElementById('hint');
+cw.querySelectorAll('.cd').forEach(c=>c.addEventListener('click',()=>{c.classList.add('out');const left=cw.querySelectorAll('.cd:not(.out)').length;hint.textContent=left?left+(left>1?' bougies allumées':' bougie allumée'):'';if(!left){document.getElementById('wish').classList.add('show');burst(260)}}));
+}
+</script>
+</body>
+</html>
